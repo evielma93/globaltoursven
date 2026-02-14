@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalToursVen</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* ===== HEADER Y NAVEGACIÓN CORREGIDO ===== */
+        header {
+            background-color: #235DBC;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        
+        .logo-img {
+            height: 50px;
+            margin-right: 15px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .logo-text {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-align: left;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 16px;
+            font-weight: normal;
+            margin-top: 2px;
+        }
+        
+        nav {
+            margin-left: auto;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-nav ul li {
+            position: relative;
+        }
+        
+        .main-nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .main-nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #E9B123;
+            transform: translateY(-2px);
+        }
+        
+        .main-nav ul li a:active {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(0);
+        }
+        
+        /* Indicador activo */
+        .main-nav ul li a.active {
+            background-color: #E9B123;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(35, 93, 188, 0.8), rgba(35, 93, 188, 0.9)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #E9B123;
+            color: #000000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #E9B123;
+        }
+        
+        .btn:hover {
+            background-color: #CAA02F;
+            border-color: #CAA02F;
+            transform: translateY(-2px);
+        }
+        
+        /* Sección de servicios */
+        .services {
+            padding: 80px 0;
+            background-color: #FFFFFF;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #235DBC;
+            font-size: 36px;
+        }
+        
+        .services-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .service-category {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-title {
+            color: #235DBC;
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E9B123;
+            text-align: center;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .service-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h3 {
+            color: #235DBC;
+            margin-bottom: 10px;
+            font-size: 22px;
+            min-height: auto;
+        }
+        
+        .service-content > p {
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .service-details {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .service-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .service-details li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+        
+        .service-details li:before {
+            content: "✓";
+            color: #E9B123;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .service-price {
+            background-color: #235DBC;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        /* Sección de destinos */
+        .destinations {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .destination-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .destination-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .destination-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .destination-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #FFFFFF;
+            padding: 20px;
+        }
+        
+        /* Sección de contacto */
+        .contact {
+            padding: 80px 0;
+            background-color: #235DBC;
+            color: #FFFFFF;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #235DBC;
+            color: #FFFFFF;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-logo-text {
+            color: #E9B123;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .footer-section h3 {
+            color: #E9B123;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .footer-section p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+        }
+        
+        /* ===== RESPONSIVE CORREGIDO ===== */
+        
+        /* Tablets (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .header-content {
+                gap: 15px;
+            }
+            
+            .logo {
+                flex: 1;
+                min-width: 250px;
+            }
+            
+            nav {
+                flex: 2;
+                min-width: 300px;
+            }
+            
+            .main-nav ul {
+                justify-content: flex-end;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .category-title {
+                font-size: 26px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .service-content h3 {
+                font-size: 20px;
+            }
+        }
+        
+        /* Tabletas pequeñas y móviles grandes (576px - 768px) */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .logo {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                margin-bottom: 0;
+            }
+            
+            .logo-text {
+                text-align: center;
+            }
+            
+            nav {
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .main-nav ul {
+                justify-content: center;
+                gap: 5px;
+            }
+            
+            .main-nav ul li a {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+                padding: 0 20px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 15px;
+            }
+            
+            .services, .destinations, .contact {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+                padding: 0 20px;
+            }
+            
+            .service-category {
+                padding: 25px 20px;
+                margin: 0 -10px;
+                border-radius: 0;
+            }
+            
+            .category-title {
+                font-size: 24px;
+                padding: 0 10px 10px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            
+            .service-img {
+                height: 180px;
+            }
+            
+            .service-content {
+                padding: 15px;
+            }
+            
+            .service-content h3 {
+                font-size: 20px;
+            }
+            
+            .service-content > p {
+                font-size: 15px;
+            }
+            
+            .service-details li {
+                font-size: 13px;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .destination-img {
+                height: 200px;
+            }
+            
+            .destination-overlay {
+                padding: 15px;
+            }
+            
+            .destination-overlay h3 {
+                font-size: 18px;
+            }
+            
+            .contact-form {
+                padding: 0 20px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-logo {
+                justify-content: center;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+        }
+        
+        /* Móviles (menos de 576px) */
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-img {
+                margin-right: 0;
+                margin-bottom: 10px;
+                height: 45px;
+            }
+            
+            .logo-text {
+                font-size: 18px;
+            }
+            
+            .logo-text span {
+                font-size: 14px;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+            
+            .main-nav ul li {
+                flex: 1;
+                min-width: 45%;
+                text-align: center;
+                margin: 2px;
+            }
+            
+            .main-nav ul li a {
+                padding: 10px 5px;
+                width: 100%;
+                font-size: 14px;
+                border-radius: 3px;
+            }
+            
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .hero h1 {
+                font-size: 26px;
+                padding: 0 15px;
+            }
+            
+            .hero p {
+                font-size: 15px;
+                padding: 0 10px;
+                margin-bottom: 20px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                width: 80%;
+                max-width: 250px;
+            }
+            
+            .services, .destinations, .contact {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .service-category {
+                padding: 20px 15px;
+            }
+            
+            .category-title {
+                font-size: 22px;
+            }
+            
+            .service-img {
+                height: 160px;
+            }
+            
+            .service-content h3 {
+                font-size: 18px;
+            }
+            
+            .service-content > p {
+                font-size: 14px;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .destination-img {
+                height: 180px;
+            }
+            
+            .contact-form {
+                padding: 0 10px;
+            }
+            
+            .footer-logo-img {
+                height: 35px;
+            }
+            
+            .footer-logo-text {
+                font-size: 18px;
+            }
+            
+            .footer-section h3 {
+                font-size: 18px;
+            }
+            
+            .footer-section p {
+                font-size: 13px;
+            }
+        }
+        
+        /* Móviles muy pequeños (menos de 360px) */
+        @media (max-width: 360px) {
+            .logo-text {
+                font-size: 16px;
+            }
+            
+            .logo-text span {
+                font-size: 13px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .main-nav ul li {
+                width: 100%;
+                margin: 3px 0;
+            }
+            
+            .main-nav ul li a {
+                padding: 12px 5px;
+                font-size: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 22px;
+            }
+            
+            .hero p {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .category-title {
+                font-size: 20px;
+            }
+            
+            .service-img {
+                height: 140px;
+            }
+            
+            .service-content {
+                padding: 12px;
+            }
+        }
+        
+        /* Ajustes para mejorar el toque en móviles */
+        @media (hover: none) and (pointer: coarse) {
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .service-card:active {
+                transform: scale(0.98);
+            }
+            
+            .destination-card:hover {
+                transform: none;
+            }
+            
+            .destination-card:active {
+                transform: scale(0.98);
+            }
+            
+            .main-nav ul li a:hover {
+                color: #FFFFFF;
+            }
+            
+            .btn:hover {
+                transform: none;
+                background-color: #E9B123;
+            }
+            
+            .btn:active {
+                transform: scale(0.98);
+                background-color: #CAA02F;
+            }
+        }
+        
+        /* Mejorar legibilidad en móviles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px;
+            }
+            
+            h1, h2, h3 {
+                line-height: 1.3;
+            }
+            
+            .service-card, .destination-card {
+                cursor: pointer;
+            }
+        }
+        
+        /* Prevenir zoom en inputs en iOS */
+        @media screen and (max-width: 768px) {
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#inicio" class="logo">
+                <img src="logo listo final.png" alt="GlobalToursVen" class="logo-img">
+                <div class="logo-text">
+                    Agencia de Viajes Global<br>
+                    <span>Turismo Venezuela</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#destinos">Destinos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Explora Venezuela con nosotros</h1>
+            <p>Vive experiencias únicas y crea recuerdos inolvidables con nuestros paquetes de viaje exclusivos.</p>
+            <a href="#contacto" class="btn">Reserva ahora</a>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-categories">
+                
+                <!-- Paquetes Todo Incluido -->
+                <div class="service-category">
+                    <h3 class="category-title">Paquetes Todo Incluido</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('choroni.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Choroní</h3>
+                                <p>Disfruta de las playas paradisíacas de Choroní con todo incluido: transporte, alojamiento, alimentación y tours.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Transporte ida y vuelta</li>
+                                        <li>Alojamiento en hotel boutique</li>
+                                        <li>Alimentación completa</li>
+                                        <li>Tours a playas y pueblos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('chichiriviche.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Chichiriviche</h3>
+                                <p>¡TODO INCLUIDO! 3 días y 2 noches en este paraíso tropical con excursiones a cayos e islas.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>3 días / 2 noches</li>
+                                        <li>Alojamiento todo incluido</li>
+                                        <li>Excursiones a cayos</li>
+                                        <li>Transporte marítimo</li>
+                                    </ul>
+                                    <div class="service-price">Paquete Especial</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('colonia.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Colonia Tovar</h3>
+                                <p>Experimenta la cultura alemana en Venezuela con nuestro paquete todo incluido a la Colonia Tovar.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Transporte privado</li>
+                                        <li>Alojamiento estilo alemán</li>
+                                        <li>Degustación gastronómica</li>
+                                        <li>Tour por cervecerías</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Excursiones de un día -->
+                <div class="service-category">
+                    <h3 class="category-title">Excursiones de un Día</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('isnotu_palmarito.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Isnotú & Palmarito</h3>
+                                <p>Un viaje al corazón de la devoción: Isnotú y Palmarito. Vive la espiritualidad y tradición.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Guía turístico especializado</li>
+                                        <li>Transporte cómodo</li>
+                                        <li>Visita a santuarios</li>
+                                        <li>Almuerzo típico incluido</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('paramo.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Páramo Andino</h3>
+                                <p>Tu día de relax con servicio 10/10. Transporte cómodo y guiado con amor ❤️ en el páramo.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Transporte cómodo</li>
+                                        <li>Guía experto</li>
+                                        <li>Fogata y chocolate caliente</li>
+                                        <li>Fotografía profesional</li>
+                                    </ul>
+                                    <div class="service-price">Servicio Premium</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('lobatera.jpeg');"></div>
+                            <div class="service-content">
+                                <h3>Jacuzzi de Lobatera</h3>
+                                <p>Visitarás las minas de carbón, hornos de ladrillos y San Pedro del Río. Experiencia geotermal única.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Tour a minas de carbón</li>
+                                        <li>Visita a hornos de ladrillos</li>
+                                        <li>San Pedro del Río</li>
+                                        <li>Baño en aguas termales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Servicios Adicionales -->
+                <div class="service-category">
+                    <h3 class="category-title">Servicios Adicionales</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="service-content">
+                                <h3>Traslados Ejecutivos</h3>
+                                <p>Servicio de traslado ejecutivo al Aeropuerto de Mérida con la máxima comodidad y puntualidad.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Vehículos ejecutivos</li>
+                                        <li>Chofer profesional</li>
+                                        <li>Puntualidad garantizada</li>
+                                        <li>Servicio 24/7</li>
+                                    </ul>
+                                    <div class="service-price">Aeropuerto Mérida</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="service-content">
+                                <h3>Guiatura en Mérida</h3>
+                                <p>Guiatura profesional por la ciudad de Mérida. Conoce todos los atractivos con expertos locales.</p>
+                                <div class="service-details">
+                                    <ul>
+                                        <li>Guías certificados</li>
+                                        <li>Tours personalizados</li>
+                                        <li>Idiomas: Español/Inglés</li>
+                                        <li>Historia y cultura local</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo listo final.png" alt="GlobalToursVen" class="footer-logo-img">
+                        <div class="footer-logo-text">GlobalToursVen</div>
+                    </div>
+                    <p>Tu agencia de viajes de confianza.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Email: info@globaltraveltours.com</p>
+                    <p>Teléfono: 412-5805018</p>
+                    <p>Dirección: Mérida, Venezuela</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <p>Facebook</p>
+                    <p>Instagram</p>
+                    <p>Twitter</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Global Tours Ven. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
